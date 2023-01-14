@@ -88,10 +88,12 @@ public class Queries_on_a_Matrix {
         //filling all rows with 0 of an array
         for (int row[] : matrix)
             Arrays.fill(row, 0);
-        runQueries(matrix, Queries);
+        //runQueries(matrix, Queries);
+        runQueriesOptimized(matrix, Queries);
         return matrix;
     }
 
+    //O(n^3) S(N^2); bruteforce
     public static void runQueries(int[][] matrix, int[][] Queries) {
         for (int row[] : Queries) //fetching query row by row
         {
@@ -109,6 +111,35 @@ public class Queries_on_a_Matrix {
             for (int i = sRow; i <= eRow; i++) {
                 for (int j = sCol; j <= eCol; j++) {
                     matrix[i][j] = matrix[i][j] + 1;
+                }
+            }
+        }
+    }
+
+    //O(n^2) s(n^2)
+    public static void runQueriesOptimized(int[][] matrix, int[][] Queries) {
+        for (int row[] : Queries) //fetching query row by row
+        {
+            //fetching values a,b,c,d
+            int a = row[0];
+            int b = row[1];
+            int c = row[2];
+            int d = row[3];
+            //since a,b is top left cell and cd is bottom right cell
+            int sRow = a;
+            int eRow = c;
+            int sCol = b;
+            int eCol = d;
+
+            //incr coloumn
+            for (int i = sRow; i <= eRow; i++) {
+                matrix[i][sCol]++;
+                if (eCol < matrix.length - 1) matrix[i][eCol + 1]--;
+            }
+
+            for (int col = 1; col < matrix.length; col++) {
+                for (int currRow = 0; currRow < matrix.length; currRow++) {
+                    matrix[currRow][col] += matrix[currRow][col - 1];
                 }
             }
         }
