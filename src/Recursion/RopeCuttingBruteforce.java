@@ -29,6 +29,7 @@ public class RopeCuttingBruteforce {
         System.out.println(obj.getMaximumRopePieces(N, set));
     }
 
+    //T(N^3) S(height of the tree)
     public static int getMaximumRopePieces(int N, int set[]) {
         if (N == 0) return 0; //successful testcase cut
         if (N < 0) return -1; //impossible to cut negative length rope
