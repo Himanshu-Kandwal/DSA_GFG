@@ -58,7 +58,7 @@ public class LinkedListThatIsAlterantinglySorted {
             this.next = null;
         }
     }
-//solution class for GFG
+//todo Warning this solution work here in IDE but does not work on GFG
     class Solution {
 
         public Node sort(Node head) {
