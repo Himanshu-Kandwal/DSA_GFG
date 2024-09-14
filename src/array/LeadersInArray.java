@@ -30,6 +30,7 @@ Constraints:
 package array;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class LeadersInArray {
     public static void main(String[] args) {
@@ -41,7 +42,7 @@ public class LeadersInArray {
 class Solution {
     // Function to find the leaders in the array.
     static ArrayList<Integer> leaders(int n, int[] arr) {
-        return leadersBruteforce(arr);
+        return leadersOptimized(arr);
     }
 
     //brute force
@@ -65,6 +66,26 @@ class Solution {
 
         return leaders;
     }
+
+    //optimized
+    static ArrayList<Integer> leadersOptimized(int[] arr) {
+        ArrayList<Integer> leaders = new ArrayList<>();
+        leaders.add(arr[arr.length - 1]); //last value is already leader
+
+        int maxFromRight = arr[arr.length - 1]; // last item is default value
+
+        //iterate from 2nd last item to keep track of right most element
+        for (int i = arr.length - 2; i >= 0; i--) {
+            if (arr[i] > maxFromRight) { //check if it is greater than the maximum from right
+                leaders.add(arr[i]);
+            }
+            maxFromRight = Math.max(maxFromRight, arr[i]); //update maxFromRight if current value is bigger than this
+        }
+
+        Collections.reverse(leaders);
+        return leaders;
+    }
+
 }
 
 
