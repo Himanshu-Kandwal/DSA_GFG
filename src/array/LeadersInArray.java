@@ -76,7 +76,7 @@ class Solution {
 
         //iterate from 2nd last item to keep track of right most element
         for (int i = arr.length - 2; i >= 0; i--) {
-            if (arr[i] > maxFromRight) { //check if it is greater than the maximum from right
+            if (arr[i] >= maxFromRight) { //check if it is greater than the maximum from right
                 leaders.add(arr[i]);
             }
             maxFromRight = Math.max(maxFromRight, arr[i]); //update maxFromRight if current value is bigger than this
