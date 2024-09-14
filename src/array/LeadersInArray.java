@@ -45,7 +45,7 @@ class Solution {
         return leadersOptimized(arr);
     }
 
-    //brute force
+    //brute force T(n^2) S(n)
     static ArrayList<Integer> leadersBruteforce(int[] arr) {
         ArrayList<Integer> leaders = new ArrayList<>();
 
@@ -67,7 +67,7 @@ class Solution {
         return leaders;
     }
 
-    //optimized
+    //optimized T(n) S(n)
     static ArrayList<Integer> leadersOptimized(int[] arr) {
         ArrayList<Integer> leaders = new ArrayList<>();
         leaders.add(arr[arr.length - 1]); //last value is already leader
