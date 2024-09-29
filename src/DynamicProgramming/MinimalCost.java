@@ -26,7 +26,7 @@ public class MinimalCost {
         Solution obj = new MinimalCost().new Solution();
         int k = 2;
         int arr[] = {35, 1, 70, 25, 79, 59, 63, 65};
-        System.out.println(obj.helperTabulation(arr, k));
+        System.out.println(obj.minimizeCost(k, arr));
     }
 
     class Solution {
