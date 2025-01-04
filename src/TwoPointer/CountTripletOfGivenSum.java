@@ -1,5 +1,7 @@
 /*
-https://www.geeksforgeeks.org/batch/gfg-160-problems/track/two-pointer-technique-gfg-160/problem/count-all-triplets-with-given-sum-in-sorted-array
+
+https://www.geeksforgeeks.org/problems/count-all-triplets-with-given-sum-in-sorted-array/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+
 Given a sorted array arr[] and a target value, the task is to count triplets (i, j, k) of valid indices, such that arr[i] + arr[j] + arr[k] = target and i < j < k.
 
 Examples:
