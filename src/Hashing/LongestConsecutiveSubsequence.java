@@ -1,4 +1,5 @@
 /*
+
 https://www.geeksforgeeks.org/problems/longest-consecutive-subsequence2449/1
 
 Given an array arr[] of non-negative integers. Find the length of the longest sub-sequence such that elements in the subsequence are consecutive integers, the consecutive numbers can be in any order.
@@ -26,39 +27,55 @@ import java.util.Set;
 
 public class LongestConsecutiveSubsequence {
 
+    public static void main(String[] args) {
+
+        int[] array = {100,4,200,1,3,2};
+        LongestConsecutiveSubsequence obj = new LongestConsecutiveSubsequence();
+        Solution solution = obj.new Solution();
+        System.out.println(solution.longestConsecutive(array));
+    }
 
     class Solution {
-
         // Function to return length of longest subsequence of consecutive integers.
         public int longestConsecutive(int[] arr) {
-
+            if (arr.length == 0)
+                return 0; // empty array
             Set<Integer> nums = new HashSet<>();
 
-            int min=arr[0];
-            int max= arr[0];
+            int min = arr[0];
+            int max = arr[0];
 
-            //adding all nums to hashset, keeping min and max num of the array in variables
-            for(int num : arr){
-                min = Math.min(min,num);
-                max = Math.max(max,num);
+            // adding all nums to hashset, keeping min and max num of the array in variables
+            for (int num : arr) {
                 nums.add(num);
             }
 
-            int maxLen=0; //track max length of all consecutive subsequences
-            int currLen=0; //.. ... ..    ,,current , ,, , , , , , , , , , ,
+            int maxLen = 0; // track max length of all consecutive subsequences
 
-            while(min<=max){ //iterating from minimum num to max num of the array
+            for (int num : nums) {
+                if (!nums.contains(num - 1)) { /*
+                 * it checks if curr num is not part of any sequence we have seen eralier ,
+                 * 1,5,2,3,4 if for num=1 we have countent length of sequence, we dont want
+                 * to count it for num=2 since it is already included in sequnce starting
+                 * from num=1
+                 */
+                    int curr = num;
+                    int currLen = 1; // since curr num is already present in array so currlen by default is 1
 
-                if(nums.contains(min)) //check if curr(or min) is in hashset
-                    currLen++; //if yes, increase currLen
-                else currLen=0; //else make it 0 so next time we re-start counting of sequence
+                    while (nums.contains(curr + 1)) {
+                        curr = curr + 1;
+                        currLen++;
+                    }
 
-                maxLen = Math.max(currLen,maxLen); //update maxLen , so it always contain, maximum len of all subsequences we found so far
+                    maxLen = Math.max(currLen, maxLen); // update maxLen , so it always contain, maximum len of all
+                    // subsequences we found so far
 
-                min++; //iterating next consecutive number
+                }
             }
 
             return maxLen;
         }
     }
+
+
 }
