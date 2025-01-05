@@ -25,9 +25,18 @@ Constraints:
 package TwoPointer;
 
 public class CountTripletOfGivenSum {
+    public static void main(String[] args) {
+        int[] arr = {-3, -1, -1, 0, 1, 2};
+        int target = -2;
+
+        CountTripletOfGivenSum obj = new CountTripletOfGivenSum();
+        Solution solution = obj.new Solution();
+        System.out.println(solution.countTriplets(arr, target));
+
+    }
+
     class Solution {
         public int countTriplets(int[] arr, int target) {
-            // Code Here
             int ans = 0, size = arr.length;
             for (int i = 0; i < size; i++) {
                 int j = i + 1, k = size - 1;
