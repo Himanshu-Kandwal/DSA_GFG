@@ -27,6 +27,14 @@ import java.util.Map;
 public class RomanToInteger {
     class Solution {
         // Finds decimal value of a given roman numeral
+
+        //Approach: loop from 0th roman letter to len-1 roman letter
+        // if curr roman letter is bigger than next roman letter, add it's int value to the ans integer
+        //else substract its int value from ans integer
+        //at the end after loop termination add value of last roman letter to ans int(since loop does not cover it)
+
+        //T(N) - one iteration
+        //S(1) - constant space for roman to int mapping
         public int romanToDecimal(String s) {
 
             Map<Character,Integer> romanToDigit = new HashMap<>();
