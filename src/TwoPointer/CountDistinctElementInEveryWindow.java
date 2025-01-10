@@ -29,6 +29,13 @@ import java.util.Map;
 
 public class CountDistinctElementInEveryWindow {
 
+    //T(N) S(N)
+    /*
+    we store frequency of first window in hashmap, and add size of hashmap(i.e count of distinct element) to ans list for first window
+    and slide window rightward one by one,every time when we slide window we reduce leftmost(currIdx-K) element's frequency in hashmap (or remove element if it became zero)
+    and add/increase currIdx's frequency in hashmap i.e remove old value from start and add new value from end to slide window as well as adding count of distinct element to anslist for every window.
+    after iterating all windows return ans list
+    */
     class Solution {
 
         ArrayList<Integer> countDistinct(int arr[], int k) {
