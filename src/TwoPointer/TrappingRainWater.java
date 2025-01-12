@@ -33,19 +33,19 @@ public class TrappingRainWater {
     }
     class Solution {
 
-        public int maxWater(int arr[]) {
+        public int maxWater(int[] arr) {
             return (int) Solution.optimized(arr);
         }
         // arr: input array
         // n: size of array
         // Function to find the trapped water between the blocks.
-        static long trappingWater(int arr[]) {
+        static long trappingWater(int[] arr) {
             return optimized(arr);
         }
 
-        //optimized code , pre compute leftMax rightMax for every block T(N), S(N)
+        //optimized code , pre-compute leftMax rightMax for every block T(N), S(N)
 
-        static long optimized(int arr[]){
+        static long optimized(int[] arr){
             int[] leftMax = new int[arr.length];
             int[] rightMax = new int[arr.length];
 
@@ -79,7 +79,7 @@ public class TrappingRainWater {
 
 
         //all below is unoptimized bruteforce code T(N^2), S(1);
-        static long bruteForce(int arr[]){
+        static long bruteForce(int[] arr){
             //add water contained at every block except first and last as they cant contain water
             long ans=0;
             for(int blockIdx=1; blockIdx<arr.length-1;blockIdx++){
@@ -90,7 +90,7 @@ public class TrappingRainWater {
         }
 
         //method to calculate water stored at block by its index
-        static long getWaterStoredAtBlock(int blockIdx,int arr[]){
+        static long getWaterStoredAtBlock(int blockIdx, int[] arr){
 
             int leftMax=0, rightMax=0;
             //leftMax calculation
