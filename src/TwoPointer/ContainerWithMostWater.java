@@ -56,9 +56,11 @@ public class ContainerWithMostWater {
             while (left < right) {
                 int height = Math.min(arr[left], arr[right]);
                 int width = right - left;
-                int currWaterContent = height * width;
-                maxWater = Math.max(maxWater, currWaterContent);
+                int currWaterContent = height * width; //area to figure out water content
 
+                maxWater = Math.max(maxWater, currWaterContent); //updating max water content variable
+
+                //move the pointer pointing to small value
                 if (arr[left] < arr[right]) left++;
                 else right--;
             }
