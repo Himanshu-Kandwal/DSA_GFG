@@ -24,11 +24,14 @@ import java.util.HashMap;
 
 public class LongestSubArrayWithEqualZerosAndOnes {
     public static void main(String[] args) {
+        int arr[] = {1, 0, 1, 1, 1, 0, 0};
 
+        System.out.println(new LongestSubArrayWithEqualZerosAndOnes().new Solution().maxLen(arr));
     }
 
     class Solution {
 
+        //T(N) S(N)
         public int maxLen(int[] arr) {
             HashMap<Integer, Integer> map = new HashMap<>();
 
