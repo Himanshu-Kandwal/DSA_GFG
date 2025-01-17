@@ -25,20 +25,22 @@ package PrefixSum;
 
 public class ProductExceptElementItself {
 
+    //T(N), S(1) no extra space except output demanded
     class Solution {
         public static int[] productExceptSelf(int[] arr) {
             int[] product = new int[arr.length];
 
-            product[0]=1;
+            product[0] = 1; //since this element has no left element to multiply with
 
-            for(int i=1;i<arr.length;i++){
-                product[i] = product[i-1] * arr[i-1];
+            //product from left
+            for (int i = 1; i < arr.length; i++) {
+                product[i] = product[i - 1] * arr[i - 1];
             }
 
 
-            int suffixProduct=1;
-
-            for(int i=arr.length-1;i>=0;i--){
+            int suffixProduct = 1;
+//product from right
+            for (int i = arr.length - 1; i >= 0; i--) {
 
                 product[i] = product[i] * suffixProduct;
                 suffixProduct *= arr[i];
