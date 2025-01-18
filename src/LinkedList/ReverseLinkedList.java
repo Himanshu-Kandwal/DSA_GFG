@@ -1,4 +1,7 @@
 /*
+
+https://www.geeksforgeeks.org/reverse-a-linked-list/
+
 Given the head of a linked list, the task is to reverse this list and return the reversed head.
 
 Examples:
@@ -30,11 +33,17 @@ public class ReverseLinkedList {
         class Node {
             int data;
             Node next;
+
             Node(int value) {
                 this.data = value;
             }
         }
 
+        /*
+        we take prev node at null, and move curr pointer step by step ahead while keeping it's next in temp variable
+        at the same time connecting it with prev node, and moving curr to nexttemp and prev to current. this way we reverse direction
+        of all nodes. finally return prev node as it is the new head now.
+         */
         Node reverseList(Node head) {
             Node prev = null;
             Node curr = head;
