@@ -64,7 +64,5 @@ class Solution {
         return -1;
     }
 
-    //todo implement binary search based solution
-
 }
 
