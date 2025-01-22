@@ -37,7 +37,25 @@ public class AddTwoNumberRepresentedByLinkedLists {
                 next = null;
             }
         }
+        /*
 
+        Approach: reverse both linked lists so we can add from right most digit and go to left most,
+
+        add values node by node and carry by storing in a sum variable, nullify carry and check if sum has new carry.
+        if it has then add sum%10 i.e last digit to answer list and take 1 as carry. if no carry is their in sum, add sum directly to answer list
+        loop until both or any one linked list gets exhausted.
+
+        if any list exhausted, add other lists digits in same way above mentioned.
+        at the end check if carry is still not zero, if non zero add it as new digit in answer list.
+
+        reverse the answer list keeping pointers to head i.e left most digit.
+
+        loop until we remove all leading/beginning zeros from the answer list as problem statement tells.
+
+        return head of answer list node.
+
+         */
+        //T(N) S(N)
         static Node addTwoLists(Node ll1, Node ll2) {
 
             Node revNum1 = reverseList(ll1);
