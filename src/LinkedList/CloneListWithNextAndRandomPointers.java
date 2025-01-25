@@ -55,7 +55,7 @@ public class CloneListWithNextAndRandomPointers {
         }
     }
 
-    //T(N) S(1)
+    //T(N) S(N)
     class Solution {
         public Node cloneLinkedList(Node head) {
 
