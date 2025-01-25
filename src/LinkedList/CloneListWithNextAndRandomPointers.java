@@ -78,7 +78,6 @@ public class CloneListWithNextAndRandomPointers {
             curr=head; //setting curr to first node
             while(curr!=null && curr.next!=null){
                 Node random = curr.random;
-                Node dupNext = curr.next.next;
                 curr.next.random = random==null? null : random.next; //connecting duplicate node's random pointer with curr's random's next(or null if random is null);
                 curr=curr.next.next; //moving curr to next.next i.e next original node
             }
