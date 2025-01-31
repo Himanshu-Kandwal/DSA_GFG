@@ -1,4 +1,4 @@
-package Recursion;
+package RecursionAndBacktracking;
 
 /*
 WAP to return all permutation(with Repetition) of a string, total N^N permutation possible

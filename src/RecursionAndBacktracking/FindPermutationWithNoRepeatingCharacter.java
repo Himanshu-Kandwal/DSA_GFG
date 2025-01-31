@@ -20,7 +20,7 @@ Constraints:
 s contains only Uppercase english alphabets
 
  */
-package Recursion;
+package RecursionAndBacktracking;
 
 import java.util.ArrayList;
 import java.util.HashSet;

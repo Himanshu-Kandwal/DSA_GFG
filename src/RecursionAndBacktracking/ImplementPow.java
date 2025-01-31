@@ -18,7 +18,7 @@ Either b is not zero or e > 0.
 -104 <= be <= 104
 
  */
-package Recursion;
+package RecursionAndBacktracking;
 
 public class ImplementPow {
 
