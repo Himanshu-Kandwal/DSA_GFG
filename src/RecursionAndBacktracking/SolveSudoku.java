@@ -8,6 +8,7 @@ public class SolveSudoku {
         int SIZE = 9;
 
         int[][] board = new int[SIZE][SIZE];
+        board[0][0] = 5;
         System.out.println("before solving");
         printBoard(board);
         solveSudoku(board);
@@ -26,6 +27,22 @@ public class SolveSudoku {
         boolean[][] row = new boolean[SIZE][SIZE + 1]; // row[rIdx][value] == true/false means at current row, the value is present
         boolean[][] col = new boolean[SIZE][SIZE + 1]; // '' '' ''       ''                 ''                  ''         ''
         boolean[][][] subGrid = new boolean[3][3][SIZE + 1]; // subgrid[rowIdx/3][colIdx/3][value] ==true/false means among 9 subgrid of 3X3 inside 9X9 grid value is present in subgrid[row/3][col/3]
+
+
+        //sudoku may have some cells filled in the board by default, mark them in our visited arrays by initializing
+
+        // Initialize tracking arrays based on the pre-filled values
+        for (int r = 0; r < SIZE; r++) {
+            for (int c = 0; c < SIZE; c++) {
+                int value = board[r][c];
+                if (value != 0) { //if curr cell is not empty , mark the value in row/col/subgrid array
+                    row[r][value] = true;
+                    col[c][value] = true;
+                    subGrid[r / 3][c / 3][value] = true;
+                }
+            }
+        }
+
         int rowIdx = 0;
         int colIdx = 0;
         helperSudoku(rowIdx, colIdx, board, row, col, subGrid);
@@ -48,8 +65,6 @@ public class SolveSudoku {
         }
 
         for (int value = 1; value <= SIZE; value++) {
-            //if not filled
-            if (board[rowIdx][colIdx] == 0) {
                 if (isValidPosition(value, rowIdx, colIdx, row, col, subGrid)) {
                     //set curr cell value
                     board[rowIdx][colIdx] = value;
@@ -69,7 +84,6 @@ public class SolveSudoku {
                     row[rowIdx][value] = col[colIdx][value] = subGrid[rowIdx / 3][colIdx / 3][value] = false;
 
                 }
-            }
         }
         return false;
     }
