@@ -1,10 +1,13 @@
 package Sorting;
 
+import java.util.Arrays;
+
 public class QuickSort {
 
     public static void main(String[] args) {
         int[] arr = {1, 0, 5, 7, 90, 10};
         quickSort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 
     private static void quickSort(int[] arr) {
@@ -16,27 +19,12 @@ public class QuickSort {
     }
 
     private static void quickSort(int[] arr, int left, int right) {
-        int partitionIdx = partition(arr, left, right);
+        if (left >= right) return;
+        int partitionIdx = partition2(arr, left, right);
         quickSort(arr, left, partitionIdx - 1);
         quickSort(arr, partitionIdx + 1, right);
     }
 
-    //this function chooses an element called pivot and makes sure that all the elements left of pivot are smaller
-    //all the element in right of pivot are greater than pivot
-    //returns the index of pivot
-    private static int partition(int[] arr, int l, int r) {
-        int pivotValue = arr[r]; // Choosing the rightmost element as pivot
-        int pivotIdx = l; // This will track the correct position for pivot
-
-        for (int i = l; i < r; i++) { // Iterate from l to r-1
-            if (arr[i] < pivotValue) { // If current element is smaller than pivot
-                swap(arr, i, pivotIdx); // Swap it with the element at pivotIdx
-                pivotIdx++; // Move pivotIdx to the right
-            }
-        }
-        swap(arr, pivotIdx, r); // Finally, place the pivot at its correct position
-        return pivotIdx; // Return the pivot index
-    }
 
     // Utility function to swap elements in an array
     private static void swap(int[] arr, int i, int j) {
@@ -44,4 +32,38 @@ public class QuickSort {
         arr[i] = arr[j];
         arr[j] = temp;
     }
+
+    static int partition2(int a[], int si, int ei) {
+        int pivot = a[si];
+        int countSmaller = 0;
+
+        // Count elements smaller than or equal to pivot
+        for (int i = si + 1; i <= ei; i++) {
+            if (a[i] <= pivot) {
+                countSmaller++;
+            }
+        }
+
+        // Find pivot index and place pivot there
+        int pivotIndex = countSmaller + si;
+        a[si] = a[pivotIndex];
+        a[pivotIndex] = pivot;
+
+        // Arrange elements around pivot
+        int i = si, j = ei;
+        while (i < pivotIndex && j > pivotIndex) {
+            if (a[i] <= pivot) {
+                i++;
+            } else if (a[j] > pivot) {
+                j--;
+            } else {
+                swap(a, i, j);
+                i++;
+                j--;
+            }
+        }
+
+        return pivotIndex;
+    }
+
 }
