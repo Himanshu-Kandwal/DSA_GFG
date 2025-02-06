@@ -30,22 +30,24 @@ import java.util.HashMap;
 
 public class ConstructTreeFromPreOrderInOrder {
 
-    class Node {
-        int data;
-        Node left, right;
+}
 
-        Node(int key) {
-            data = key;
-            left = right = null;
-        }
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int key) {
+        data = key;
+        left = right = null;
     }
+}
 
-    class Solution {
+class Solution {
 
     static int preorderIndex = 0;
     static HashMap<Integer, Integer> inorderMap;
 
-    public static Node buildTree(int inorder[], int preorder[]) {
+    public static Node buildTree(int[] inorder, int[] preorder) {
         inorderMap = new HashMap<>();
         preorderIndex = 0;
 
@@ -75,4 +77,4 @@ public class ConstructTreeFromPreOrderInOrder {
         return root;
     }
 }
-}
+
