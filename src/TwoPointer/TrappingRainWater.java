@@ -114,3 +114,60 @@ public class TrappingRainWater {
         }
     }
 }
+
+//Two pointer T(N) S(1)
+
+class Solution {
+    public int trap(int[] arr) {
+
+        // Left and right pointers to traverse the array
+        int l = 0;
+        int r = arr.length - 1;
+
+        // Variables to store the maximum height seen so far from left and right
+        int lMax = 0;
+        int rMax = 0;
+
+        // Variable to store the total trapped water
+        int waterTrapped = 0;
+
+        // Traverse the array until the left and right pointers meet
+        while (l <= r) {
+
+            // If the left bar is smaller or equal to the right bar
+            if (arr[l] <= arr[r]) {
+
+                // If the current left bar is taller than lMax, update lMax
+                if (arr[l] > lMax) {
+                    lMax = arr[l];
+                }
+                // Otherwise, calculate trapped water at the current left index
+                // Water trapped = lMax - height of the current bar
+                else {
+                    waterTrapped += lMax - arr[l];
+                }
+
+                // Move the left pointer to the right
+                l++;
+            }
+            else { // If the right bar is smaller
+
+                // If the current right bar is taller than rMax, update rMax
+                if (arr[r] > rMax) {
+                    rMax = arr[r];
+                }
+                // Otherwise, calculate trapped water at the current right index
+                // Water trapped = rMax - height of the current bar
+                else {
+                    waterTrapped += rMax - arr[r];
+                }
+
+                // Move the right pointer to the left
+                r--;
+            }
+        }
+
+        // Return the total trapped water
+        return waterTrapped;
+    }
+}
