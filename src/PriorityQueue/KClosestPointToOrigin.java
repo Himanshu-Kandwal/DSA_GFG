@@ -1,5 +1,6 @@
 /*
 
+https://www.geeksforgeeks.org/problems/k-closest-points-to-origin--172242/1
 https://leetcode.com/problems/k-closest-points-to-origin/
 
 Given an array of points where points[i] = [xi, yi] represents a point on the X-Y plane and an integer k, return the k closest points to the origin (0, 0).
@@ -36,6 +37,8 @@ Constraints:
 package PriorityQueue;
 
 import java.util.PriorityQueue;
+
+//T(N) S(K) k is size of number of points we are asked to return
 
 public class KClosestPointToOrigin {
     class Solution {
