@@ -24,21 +24,42 @@ Constraints:
  */
 package Stack;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Stack;
+
 public class NextGreaterElement {
 
+    //T(N) S(N)
     class Solution {
-        // Function to find the next greater element for each element of the array.
+
         public ArrayList<Integer> nextLargerElement(int[] arr) {
-            // code here
-            Stack<Integer> st = new Stack();
-            ArrayList<Integer> ans = new ArrayList<>(Collections.nCopies(arr.length, -1));
-            for(int i=0;i<arr.length;i++){
-                while(!st.isEmpty() && arr[st.peek()]<arr[i]){
-                    ans.set(st.pop(), arr[i]);
+            Stack<Integer> st = new Stack<>();
+            ArrayList<Integer> list = new ArrayList<>();
+            int n = arr.length;
+
+            // Iterate from the last element to the first
+            for (int i = n - 1; i >= 0; i--) {
+                // Pop elements from stack while they are smaller than or equal to arr[i]
+                while (!st.isEmpty() && st.peek() <= arr[i]) {
+                    st.pop();
                 }
-                st.push(i);
+
+                // If stack is empty, no greater element exists
+                if (st.isEmpty()) {
+                    list.add(-1);
+                } else {
+                    list.add(st.peek());
+                }
+
+                // Push the current element onto stack
+                st.push(arr[i]);
             }
-            return ans;
+
+            // Reverse the result list to match the input order
+            Collections.reverse(list);
+            return list;
         }
+
     }
 }
