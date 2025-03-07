@@ -115,5 +115,31 @@ public class FrogJump {
 
             return memo[0];
         }
+
+        //tabulation + Space optimization
+        int helperSpaceOptimizedDP(int [] height) {
+            int n = height.length;
+            int next1 = 0;  // memo[n-1] = 0 (base case)
+            int next2 = 0;  // memo[n] is out of bounds, but effectively treated as 0
+
+            for (int i = n - 2; i >= 0; i--) {
+                int cost1 = Math.abs(height[i] - height[i+1]) + next1;
+
+                int cost2 = Integer.MAX_VALUE;
+                if (i + 2 < n) {
+                    cost2 = Math.abs(height[i] - height[i+2]) + next2;
+                }
+
+                int current = Math.min(cost1, cost2);
+
+                // Move variables forward
+                next2 = next1;
+                next1 = current;
+            }
+
+            return next1;
+        }
+
+
     }
 }
