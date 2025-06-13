@@ -3,6 +3,7 @@ package Searching;
 /*
 
 https://www.geeksforgeeks.org/problems/peak-element/1
+https://leetcode.com/problems/find-peak-element/description/
 
 Given an array arr[] where no two adjacent elements are same, find the index of a peak element. An element is considered to be a peak if it is greater than its adjacent elements (if they exist). If there are multiple peak elements, return index of any one of them. The output will be "true" if the index returned by your function is correct; otherwise, it will be "false".
 
@@ -25,7 +26,7 @@ Constraints:
 
 
  */
-public class FindPeak {
+public class FindPeakElement {
     public static void main(String[] args) {
         int[] arr = {1, 2, 4, 5, 7, 8, 10, 4};
         int peakIdx = findPeakIdx(arr);
@@ -34,21 +35,17 @@ public class FindPeak {
 
     private static int findPeakIdx(int[] arr) {
 
-        return new Solution().peakElement(arr);
+        return new Solution().findPeakElement(arr);
     }
 
 
 }
 
-//gfg class
 class Solution {
 
-    public int peakElement(int[] arr) {
-        return peakElementLinear(arr);
-    }
 
     //T(N) S(1) for using linear iteration
-    public int peakElementLinear(int[] arr) {
+    public int findPeakElementBruteForce(int[] arr) {
         if (arr.length == 1) return 0;
 
         if (arr.length == 2) return arr[0] > arr[1] ? 0 : 1;
@@ -64,5 +61,23 @@ class Solution {
         return -1;
     }
 
+    //T(logn) S(1)
+    public int findPeakElement(int[] nums) {
+        int l = 0, r = nums.length - 1;
+
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+
+            if (mid < nums.length - 1 && nums[mid] < nums[mid + 1]) { //check if mid+1 is in range and we have increasing slope rightward i.e 1,2,3
+                l = mid + 1; //select right half
+            } else if (mid > 0 && nums[mid] < nums[mid - 1]) { //check if mid-1 is in range and we have decreasing slope or left ward increasing slope 3,2,1
+                r = mid - 1; //select left half
+            } else {
+                return mid; // nums[mid] is a peak as both above condition failed
+            }
+        }
+
+        return -1; // Should not reach here as per problem guarantees
+    }
 }
 
