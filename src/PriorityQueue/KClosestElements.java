@@ -36,7 +36,8 @@ import java.util.*;
 
 public class KClosestElements {
 
-    class Solution {
+    //Heap based solution takes extra space
+    class SolutionHeap {
         public List<Integer> findClosestElements(int[] arr, int k, int x) {
             PriorityQueue<Integer> pq = new PriorityQueue<Integer>(new ElementComparator(x));
 
@@ -76,6 +77,36 @@ public class KClosestElements {
 
             // if diff is same, then compare number itself
             return Integer.compare(b, a);
+        }
+    }
+
+    //two pointers+sliding window without extra space of heap
+
+    class SolutionTwoPointerSliding {
+        public List<Integer> findClosestElements(int[] arr, int k, int x) {
+            int start = 0;
+            int end = arr.length - 1;
+
+            while (end - start >= k) { //run while as long as there are still k elements left
+
+                int diffStart = Math.abs(arr[start] - x);
+                int diffEnd = Math.abs(arr[end] - x);
+
+                if (diffStart > diffEnd) { // if diffStart is greater means we need to shrink from start to go close to X
+                    start++;
+                } else { // otherwise shrink from end
+                    end--;
+                }
+            }
+
+            //ans list
+            List<Integer> list = new ArrayList<>();
+
+            //copy elements from start to end which are closest to k, and already in sorted order since array itself is sorted
+            while (start <= end)
+                list.add(arr[start++]);
+
+            return list;
         }
     }
 }
