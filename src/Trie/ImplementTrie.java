@@ -41,6 +41,16 @@ At most 3 * 104 calls in total will be made to insert, search, and startsWith.
  */
 public class ImplementTrie {
     public static void main(String[] args) {
+        Trie trie = new Trie();
+        trie.insert("apple");
+        trie.insert("app");
+        trie.insert("application");
+        trie.insert("agent");
+        trie.insert("ball");
+        trie.insert("ballpoint");
+
+        System.out.println(trie.search("app"));
+        System.out.println(trie.startsWith("appl"));
 
     }
 }
@@ -77,7 +87,7 @@ class Trie {
     }
 
     // Traverses the trie to the end of the given prefix; returns node if found
-    public TrieNode searchPrefix(String prefix) {
+    private TrieNode searchPrefix(String prefix) {
         TrieNode temp = root;
         for (int i = 0; i < prefix.length(); i++) {
             int currIdx = prefix.charAt(i) - 'a';
