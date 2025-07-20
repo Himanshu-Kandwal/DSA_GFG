@@ -46,7 +46,66 @@ There are at most 25 cells containing gold.
 
  */
 
+//without visited matrix
 class PathWithMaximumGold {
+
+    public int getMaximumGold(int[][] grid) {
+        //boolean visited[][] = new boolean[grid.length][grid[0].length];
+
+        int max = 0;
+
+        //we can start from any cell which is not 0, so we are starting from all cell and getting max
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] != 0) {
+                    int currGold = getMaximumGold(i, j, grid);
+                    max = Math.max(max, currGold);
+                }
+            }
+        }
+
+        return max;
+    }
+
+    public int getMaximumGold(int r, int c, int[][] grid) {
+        int m = grid.length - 1; //last row idx
+        int n = grid[0].length - 1; //last col idx
+
+        //check if cell is valid i.e not out of boundry, not 0 gold cell, not already visited cell i.e 0 value cell
+        if (r < 0 || c < 0 || r > m || c > n || grid[r][c] == 0)
+            return 0;
+
+        //storing curr gold  before marking visited
+        int currGold = grid[r][c];
+
+        //mark curr cell as visited (invalid for next move)
+        grid[r][c] = 0;
+
+        //exploring gold from all direction
+        //top
+        int topGold = getMaximumGold(r - 1, c, grid);
+        //bottom
+        int bottomGold = getMaximumGold(r + 1, c, grid);
+
+        //left
+        int leftGold = getMaximumGold(r, c - 1, grid);
+
+        //right
+        int rightGold = getMaximumGold(r, c + 1, grid);
+
+        grid[r][c] = currGold; // marking unVisited by restoring value to original value, so other recursive calls can also explore the cell
+
+        int maxLR = Math.max(leftGold, rightGold);
+        int maxTB = Math.max(topGold, bottomGold);
+
+        return currGold + Math.max(maxLR, maxTB);
+
+    }
+}
+
+/*
+using visited matrix's extra space
+class Solution {
     public int getMaximumGold(int[][] grid) {
         boolean visited[][] = new boolean[grid.length][grid[0].length];
 
@@ -97,3 +156,4 @@ class PathWithMaximumGold {
 
     }
 }
+*/
