@@ -1,4 +1,7 @@
 package DynamicProgramming;
+
+import java.util.Arrays;
+
 /*
 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/
 Given an m x n integers matrix, return the length of the longest increasing path in matrix.
