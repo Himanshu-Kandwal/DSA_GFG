@@ -45,23 +45,26 @@ Constraints:
 At most 2 * 105 calls will be made to get and put.
 
  */
+
 public class DesignLRU_inbuilt_Class_allowed {
     class LRUCache extends LinkedHashMap<Integer, Integer> {
         private int capacity;
 
         public LRUCache(int capacity) {
-            super(capacity, 0.75f, true); // accessOrder = true
+            super(capacity, 0.75f, true); // accessOrder = true i.e order based on insertion as well as access order, false means insertion order only
             this.capacity = capacity;
         }
 
+        //O(1)
         public int get(int key) {
             return super.getOrDefault(key, -1);
         }
-
+        //O(1)
         public void put(int key, int value) {
             super.put(key, value);
         }
 
+        //this method runs to check if eldest entry should be removed or not
         @Override
         protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
             return size() > capacity;
